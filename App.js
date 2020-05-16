@@ -10,34 +10,60 @@ import React from 'react';
 import { ApplicationProvider, Layout, Text,IconRegistry } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import { AppNavigator} from './src/pages/Explore/Explore';
+import { TabNavigator} from './src/pages/Explore/Explore';
+//import Onboard from './src/pages/Onboarding/Onboard';
+import Boarding from './src/pages/Boarding/Boarding';
+import Welcome from './src/pages/Welcome/Welcome';
+import Signup from './src/pages/Signup/Signup';
+import Signin from './src/pages/Signin/Signin';
+import Block from './src/components/Block/Block';
+import PhoneAuth from './src/pages/PhoneAuth/PhoneAuth';
+import VerificationCode from './src/pages/VerificationCode/VerificationCode';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
-  //View,
-  //Text,
-  StatusBar,
 } from 'react-native';
 
 import {
   Header,
   LearnMoreLinks,
   Colors,
-  DebugInstructions,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
+import reducers from './src/reducers';
+
+const Stack = createStackNavigator();
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 const App: () => React$Node = () => {
   return (
     <>
-    
-         <React.Fragment>
+        <Provider store={store}>
+         <Block>
          <IconRegistry icons={EvaIconsPack} />
-         <ApplicationProvider mapping={mapping} theme={lightTheme}>
-          <AppNavigator/>
+         <ApplicationProvider mapping={mapping} theme={lightTheme} >
+         <NavigationContainer styles={{backgroundColor:'white'}}>
+      <Stack.Navigator initialRouteName="Boarding" screenOptions={{headerShown:false}}>
+        <Stack.Screen name="Boarding" component={Boarding} />
+        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Welcome" component={Welcome}/>
+        <Stack.Screen name="Signin" component={Signin} />
+        <Stack.Screen name="TabNavigator" component={TabNavigator} options={({route, navigation}) => (
+                    {
+                    navigation: {navigation}}
+                )} />
+        <Stack.Screen name="VerificationCode" component={VerificationCode}/>
+        <Stack.Screen name="PhoneAuth" component={PhoneAuth}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+           {/* <Onboard/> */}
+          {/* <AppNavigator/> */}
           </ApplicationProvider>
-         </React.Fragment>
+         </Block>
+         </Provider>
            
         
     </>

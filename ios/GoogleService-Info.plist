@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>819851855232-s707s1j5dlv7h4knsggjhv0vcmpue26l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.819851855232-s707s1j5dlv7h4knsggjhv0vcmpue26l</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAuc3am6m2TY4QepWMSvTdhIrrmB_4PrSo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>819851855232</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.metobi.zippypay</string>
+	<key>PROJECT_ID</key>
+	<string>zippypay-c635d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>zippypay-c635d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:819851855232:ios:a6be8e629ac8b112a5ed65</string>
+	<key>DATABASE_URL</key>
+	<string>https://zippypay-c635d.firebaseio.com</string>
+</dict>
+</plist>

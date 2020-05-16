@@ -7,14 +7,19 @@
 
 #import "AppDelegate.h"
 
+
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+@import Firebase;
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  // if ([FIRApp defaultApp] == nil) {
+  //   [FIRApp configure];
+  // }
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"AdventistDating"
@@ -27,6 +32,9 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
   return YES;
 }
 
