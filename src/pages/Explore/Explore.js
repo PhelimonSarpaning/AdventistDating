@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createStackNavigator } from '@react-navigation/stack';
@@ -55,7 +55,7 @@ const BottomTabBar = ({ navigation, state }) => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor:'white'}}>
+    <View >
       <BottomNavigation selectedIndex={state.index} onSelect={onSelect}>
       <BottomNavigationTab title='HOME'/>
       <BottomNavigationTab title='TRANSACTIONS'/>
@@ -64,7 +64,7 @@ const BottomTabBar = ({ navigation, state }) => {
         {/* <BottomNavigationTab title='USERS'/>
         <BottomNavigationTab title='ORDERS'/> */}
       </BottomNavigation>
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -17,13 +17,14 @@ import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 import Badge from '../../components/Badge/Badge';
 import hexToRgba from 'hex-to-rgba';
-
+import AdImage from '../../../assets/images/objects.png';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../components/Responsive/Responsive';
 import {sizes, colors, fonts} from '../../constants/theme';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { BottomNavigation, BottomNavigationTab, Layout } from '@ui-kitten/components';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 const data = [{
     value: 'USD',
@@ -62,7 +63,7 @@ class Home extends Component{
     constructor(props){
         super(props);
         this.state={
-            currentBalance:'10,000',
+            currentFunds:'10,000',
             conversionRate:' $ 1 - Ghc 5.44',
             firstname:'Phelimon',
             
@@ -79,9 +80,9 @@ class Home extends Component{
 
     renderHeader(){
       return(
-        <Block style={{paddingBottom:20}}>
+        <View>
           <Text h2  bold>Welcome,</Text>
-          <Text style={{right: -15}} h3>{this.state.firstname}</Text>
+          <Text style={{left: wp('3%')}} h3>{this.state.firstname}</Text>
           <TouchableOpacity>
           <Block flex={false}>
           <Image
@@ -96,7 +97,7 @@ class Home extends Component{
                />
              </Block>
          </TouchableOpacity>
-        </Block>
+        </View>
       );
     }
 
@@ -196,14 +197,43 @@ class Home extends Component{
         </View>
         );
       }
+
+      renderMoneyBox = () => {
+        return(
+          <View style={styles.moneyBox}>
+            <View  style={styles.line}/>
+            <Text style={styles.funds} > Ghc {this.state.currentFunds}</Text>
+            <Text style={styles.currentFundHeader}>Current Funds</Text>
+          </View>
+
+        );
+      }
+      renderMoneyAd = () => {
+        return(
+          <View style={styles.moneyAd}>
+            <Image
+            style={styles.objects}
+            source={AdImage}
+            />
+            <Text style={styles.headerAd}>
+              {`International Stocks
+Let help you invest in
+the best stock`}
+            </Text>
+          </View>
+
+        );
+      }
       
    render(){
     return(
-    <React.Fragment>
-        <ScrollView style={styles.welcome} showsVerticalScrollIndicator={false}>
+    <View style={styles.background} >
+      <View style={styles.welcome} >
         {this.renderHeader()}
-        {this.renderBalance()}
-        <CreditCard
+       {this.renderMoneyBox()}
+        {this.renderMoneyAd()}
+        {/* {this.renderBalance()} */}
+        {/* <CreditCard
         type='visa'
         shiny={true}
         bar={true}
@@ -211,11 +241,20 @@ class Home extends Component{
         number="5252625662762433"
         name="Phelimon Sarpaning"
         expiry="04/08"
-        cvc="012"/>
+        cvc="012"/> */}
 
-          {this.renderAwards()}
+          {/* {this.renderAwards()} */}
+        </View>
+        <ScrollView 
+        showsVerticalScrollIndicator={false}
+        ref="scrollView"
+        onContentSizeChange={(width,height) => this.refs.scrollView.scrollTo({y:height})}
+        style={styles.nextView}>
+          <View style={styles.investBox}>
+          </View>
         </ScrollView>
-      </React.Fragment>
+        
+      </View>
     );
    };
        
@@ -224,11 +263,93 @@ class Home extends Component{
 export default Home;
 
 const styles = StyleSheet.create({
+  background: {
+    //position: 'absolute',
+    top: 0,
+    left: 0,
+    width: wp('100%'),
+    height: hp('100%'),
+    backgroundColor: '#fff',
+  },
     welcome: {
-        paddingTop: 100,
-        paddingVertical: sizes.padding,
-        paddingHorizontal: sizes.padding,
-        backgroundColor: colors.gray4
+        top: hp('8%'),
+        paddingHorizontal:wp('10%'),
+        backgroundColor: '#fff'
+      },
+      nextView : {
+        position:'relative',
+        top: hp('10%'),
+      },
+      currentFundHeader: {
+        top: hp('0.1%'),
+        left: wp('10%'),
+        color: '#1f1c51',
+        fontFamily: 'Helvetica',
+        fontSize: 12,
+        fontWeight: '400',
+      },
+      funds: {
+        //position: 'absolute',
+        top: hp('5%'),
+        left: wp('8%'),
+        color: '#1f1c51',
+        //fontFamily: 'Viga',
+        fontSize: 25,
+        fontWeight: '400',
+        //lineHeight: 22,
+      },
+      investBox: {
+        //position: 'absolute',
+        top: hp('54%'),
+        alignSelf:'center',
+        width: wp('85%'),
+        height: hp('10%'),
+        borderRadius:10,
+        backgroundColor: '#146687'
+      },
+      line: {
+        position: 'absolute',
+        top: hp('2.5%'),
+        left: wp('5%'),
+        width: 1,
+        height: 48,
+        borderColor: '#1f1c51',
+        borderStyle: 'solid',
+        borderWidth: 2,
+      },
+      objects: {
+        position: 'absolute',
+        top: hp('3%'),
+        alignSelf:'center',
+        width: wp('52%'),
+        height: hp('35%'),
+      },
+      headerAd: {
+        position: 'absolute',
+        top: hp('35%'),
+        left: wp('5%'),
+        color: '#ffffff',
+        fontFamily: 'Helvetica',
+        fontSize: 12,
+        fontWeight: '400',
+      },
+      moneyBox: {
+        position: 'absolute',
+        top: hp('6%'),
+        alignSelf:'center',
+        width: wp('85%'),
+        height: hp('10%'),
+        borderRadius:10,
+        backgroundColor: '#fcca0d',
+      },
+      moneyAd: {
+        position: 'absolute',
+        top: hp('18%'),
+        alignSelf:'center',
+        width: wp('85%'),
+        height: 370,
+        borderRadius: 10,
+        backgroundColor: '#00ceb9',
       },
       // horizontal line
       hLine: {

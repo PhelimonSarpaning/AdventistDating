@@ -22,6 +22,7 @@ import { signupWithPhoneNumber } from '../../actions/index';
 //import styles from './Signup.styles';
 import CountryPicker from 'react-native-country-picker-modal';
 import Block from '../../components/Block/Block';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from '../../components/Responsive/Responsive';
 
 // const api = new Frisbee({
 //   baseURI: 'http://localhost:3000',
@@ -37,71 +38,6 @@ const MAX_LENGTH_NUMBER = 20;
 
 // if you want to customize the country picker
 const countryPickerCustomStyles = {};
-
-// your brand's theme primary color
-const brandColor = '#744BAC';
-
-const styles = StyleSheet.create({
-  countryPicker: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  container: {
-    flex: 1
-  },
-  header: {
-    textAlign: 'center',
-    marginTop: 60,
-    fontSize: 22,
-    margin: 20,
-    color: '#4A4A4A',
-  },
-  form: {
-    margin: 20
-  },
-  textInput: {
-    padding: 0,
-    margin: 0,
-    flex: 1,
-    fontSize: 20,
-    color: brandColor
-  },
-  button: {
-    marginTop: 20,
-    height: 50,
-    backgroundColor: brandColor,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: '#fff',
-    fontFamily: 'Helvetica',
-    fontSize: 16,
-    fontWeight: 'bold'
-  },
-  wrongNumberText: {
-    margin: 10,
-    fontSize: 14,
-    textAlign: 'center'
-  },
-  disclaimerText: {
-    marginTop: 30,
-    fontSize: 12,
-    color: 'grey'
-  },
-  callingCodeView: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  callingCodeText: {
-    fontSize: 20,
-    color: brandColor,
-    fontFamily: 'Helvetica',
-    fontWeight: 'bold',
-    paddingRight: 10
-  }
-});
 
 class PhoneAuth extends Component {
   constructor(props) {
@@ -307,14 +243,19 @@ class PhoneAuth extends Component {
         <Block middle >
       <View style={styles.container}>
 
-        <Text style={styles.header}>{headerText}</Text>
+        <Text style={styles.phoneVerficationText}>{headerText}</Text>
+        <Text style={styles.subText}>Connect your phone with PINE account.</Text>
+        <View style={styles.ellipse32} />
+        <View style={styles.ellipse31} />
+        <View style={styles.path372} />
+        <View style={styles.path369} />
 
         <Form ref={'form'} style={styles.form}>
 
           <View style={{ flexDirection: 'row' }}>
 
             {/* {this._renderCountryPicker()} */}
-            {this._renderCallingCode()}
+            {/* {this._renderCallingCode()} */}
 
             <TextInput
               ref={'textInput'}
@@ -326,7 +267,8 @@ class PhoneAuth extends Component {
               onChangeText={this._onChangeText}
               placeholder={this.state.enterCode ? '_ _ _ _ _ _' : 'Phone Number'}
               keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
-              style={[ styles.textInput, textStyle ]}
+              //style={[ styles.textInput, textStyle ]}
+              style={[ styles.rectangle]}
               returnKeyType='go'
               autoFocus
               placeholderTextColor={brandColor}
@@ -336,7 +278,7 @@ class PhoneAuth extends Component {
 
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={this._getSubmitAction}>
+          <TouchableOpacity style={styles.signButt} onPress={this._getSubmitAction}>
             {console.log("the code is " + this.state.enterCode)}
             <Text style={styles.buttonText}>{ buttonText }</Text>
           </TouchableOpacity>
@@ -372,3 +314,169 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PhoneAuth)
+
+
+// your brand's theme primary color
+const brandColor = '#1f1c51';
+
+const styles = StyleSheet.create({
+  countryPicker: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  ellipse32: {
+    position: 'absolute',
+    top: hp('0.5%'),
+    left: 166,
+    width: 68,
+    height: 69,
+    borderRadius:50,
+    borderColor: '#a9fddc',
+    borderStyle: 'solid',
+    borderWidth: 11,
+  },
+  ellipse31: {
+    position: 'absolute',
+    top: 300,
+    left: -14,
+    width: 29,
+    height: 29,
+    borderRadius:15,
+    borderColor: '#a9fddc',
+    borderStyle: 'solid',
+    borderWidth: 7,
+  },
+  path372: {
+    position: 'absolute',
+    top: hp('20%'),
+    left: wp('92%'),
+    width: wp('40%'),
+    height: hp('8.5%'),
+    borderRadius:50,
+    borderColor: '#fcca0d',
+    borderStyle: 'solid',
+    borderWidth: 7,
+  },
+  path369: {
+    position: 'absolute',
+    top: hp('15%'),
+    left: -18,
+    width: 36,
+    height: 10,
+    borderColor: '#ff708b',
+    borderRadius:5,
+    borderStyle: 'solid',
+    borderWidth: wp('2%'),
+    transform: [
+      {rotate: '20deg'}
+    ]
+  },
+  phoneVerficationText: {
+    position: 'absolute',
+    top: 232,
+    left: 43,
+    //width: 169,
+    height: 35,
+    paddingHorizontal:18,
+    color: '#1f1c51',
+    //fontFamily: 'Viga',
+    fontSize: 19,
+    fontWeight: '400',
+  },
+  subText: {
+    position: 'absolute',
+    top: 260,
+    left: 63,
+    width: 224,
+    height: 38,
+    color: '#707070',
+    //fontFamily: 'SF Pro Text',
+    fontSize: 16,
+    fontWeight: '400',
+    lineHeight: 21,
+  },
+  signButt: {
+    position: 'absolute',
+    top: 750,
+    alignSelf:'center',
+    justifyContent:'center',
+    width: 200,
+    height: 44,
+    paddingLeft:6,
+    borderRadius: 22,
+    backgroundColor: '#71fcc6',
+  },
+  rectangle: {
+    position: 'absolute',
+    top: 310,
+    paddingLeft:8,
+    left: 41,
+    width: 294,
+    height: 44,
+    borderRadius: 9,
+    backgroundColor: '#e4e9eb',
+  },
+  container: {
+    flex: 1,
+    backgroundColor:'#fff'
+  },
+  header: {
+    textAlign: 'center',
+    marginTop: 60,
+    fontSize: 22,
+    margin: 20,
+    color: '#4A4A4A',
+  },
+  form: {
+    margin: 20
+  },
+  textInput: {
+    padding: 0,
+    margin: 0,
+    flex: 1,
+    fontSize: 20,
+    color: brandColor
+  },
+  button: {
+    marginTop: 20,
+    height: 50,
+    backgroundColor: brandColor,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#1f1c51',
+    fontFamily: 'Helvetica',
+    alignSelf:'center',
+    //fontSize: 16,
+    //fontWeight: 'bold'
+  },
+  wrongNumberText: {
+    top:hp('40%'),
+    margin: 10,
+    fontSize: 14,
+    textAlign: 'center'
+  },
+  disclaimerText: {
+    top:315,
+    marginTop: 55,
+    justifyContent:'center',
+    paddingHorizontal:40,
+    alignSelf:'center',
+    fontSize: 12,
+    color: 'grey'
+  },
+  callingCodeView: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  callingCodeText: {
+    fontSize: 20,
+    color: brandColor,
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold',
+    paddingRight: 10
+  }
+});
+

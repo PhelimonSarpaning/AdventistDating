@@ -16,6 +16,7 @@ import Boarding from './src/pages/Boarding/Boarding';
 import Welcome from './src/pages/Welcome/Welcome';
 import Signup from './src/pages/Signup/Signup';
 import Signin from './src/pages/Signin/Signin';
+import Home from './src/pages/Home/Home';
 import Block from './src/components/Block/Block';
 import PhoneAuth from './src/pages/PhoneAuth/PhoneAuth';
 import VerificationCode from './src/pages/VerificationCode/VerificationCode';
@@ -51,6 +52,7 @@ const App: () => React$Node = () => {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Welcome" component={Welcome}/>
         <Stack.Screen name="Signin" component={Signin} />
+        {/* <Stack.Screen name="Home" component={Home} /> */}
         <Stack.Screen name="TabNavigator" component={TabNavigator} options={({route, navigation}) => (
                     {
                     navigation: {navigation}}

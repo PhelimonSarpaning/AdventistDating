@@ -33,20 +33,21 @@ export default class Login extends Component {
 
     Keyboard.dismiss();
     this.setState({ loading: true });
-
+    
+    navigation.navigate("TabNavigator");
     // check with backend API or with some static data
-    if (email !== VALID_EMAIL) {
-      errors.push("email");
-    }
-    if (password !== VALID_PASSWORD) {
-      errors.push("password");
-    }
+    // if (email !== VALID_EMAIL) {
+    //   errors.push("email");
+    // }
+    // if (password !== VALID_PASSWORD) {
+    //   errors.push("password");
+    // }
 
-    this.setState({ errors, loading: false });
+    // this.setState({ errors, loading: false });
 
-    if (!errors.length) {
-      navigation.navigate("TabNavigator");
-    }
+    // if (!errors.length) {
+    //   navigation.navigate("TabNavigator");
+    // }
   }
 
   render() {

@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   newButton: {
     position: 'absolute',
-    top: hp('60%'),
+    top: hp('80%'),
     left: wp('2%'),
     width: 135,
     height: 44,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   secondButton: {
     position: 'relative',
-    top: hp('60%'),
+    top: hp('80%'),
     left: wp('40%'),
     width: 130,
     height: 44,
